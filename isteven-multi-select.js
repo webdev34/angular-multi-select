@@ -1037,7 +1037,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
     }
 }]).run( [ '$templateCache' , function( $templateCache ) {
     var template = 
-        '<span class="multiSelect inlineBlock" ng-class="{none: helperStatus.none}">' +
+        '<span class="multiSelect inlineBlock" ng-class="{none: outputModel.length == 0}">' +
             // main button
             '<button id="{{directiveId}}" type="button"' +                
                 'ng-click="toggleCheckboxes( $event ); refreshSelectedItems(); refreshButton(); prepareGrouping; prepareIndex();"' +
