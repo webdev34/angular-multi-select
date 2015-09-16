@@ -43,6 +43,8 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             // models
             inputModel      : '=',
             outputModel     : '=',
+            thisLength     : '=',
+            selectLabel     : '=',
 
             // settings based on attribute
             isDisabled      : '=',
@@ -523,7 +525,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                     $scope.varButtonLabel = $scope.lang.nothingSelected;
                 }
                 else {                
-                    var tempMaxLabels = $scope.outputModel.length;
+                    var tempMaxLabels = parseInt($scope.thisLength);
                     if ( typeof attrs.maxLabels !== 'undefined' && attrs.maxLabels !== '' ) {
                         tempMaxLabels = attrs.maxLabels;
                     }
@@ -961,7 +963,13 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 $scope.lang.selectNone      = $sce.trustAsHtml( $scope.icon.selectNone + '&nbsp;&nbsp;Select None' );
                 $scope.lang.reset           = $sce.trustAsHtml( $scope.icon.reset      + '&nbsp;&nbsp;Reset' );
                 $scope.lang.search          = 'Search...';
-                $scope.lang.nothingSelected = 'None Selected';                
+
+                if(typeof $scope.selectLabel === 'undefined'){
+                    $scope.lang.nothingSelected = 'Select';
+                }else{
+                    $scope.lang.nothingSelected = $scope.selectLabel;
+                }
+                                
             }
             $scope.icon.tickMark = $sce.trustAsHtml( $scope.icon.tickMark );
                 
