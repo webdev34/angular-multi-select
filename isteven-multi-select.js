@@ -1039,7 +1039,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
     var template = 
         '<span class="multiSelect inlineBlock" ng-class="{none: outputModel.length == 0}">' +
             // main button
-            '<button id="{{directiveId}}" type="button"' +                
+            '<button id="{{directiveId}}" class="label-holder" type="button"' +                
                 'ng-click="toggleCheckboxes( $event ); refreshSelectedItems(); refreshButton(); prepareGrouping; prepareIndex();"' +
                 'ng-bind-html="varButtonLabel"' +
                 'ng-disabled="disable-button"' +
