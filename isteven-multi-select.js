@@ -45,6 +45,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             outputModel     : '=',
             thisLength     : '=',
             selectLabel     : '=',
+            refreshSelect   : '=',
 
             // settings based on attribute
             isDisabled      : '=',
@@ -72,7 +73,9 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
          templateUrl: 
             'isteven-multi-select.htm',                            
 
-        link: function ( $scope, element, attrs ) {                       
+        link: function ( $scope, element, attrs ) {    
+
+                        
 
             $scope.backUp           = [];
             $scope.varButtonLabel   = '';               
@@ -189,6 +192,10 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                             $scope.filteredModel.push( $scope.inputModel[ i ] );
                         }
                     }
+                } 
+
+                if($scope.refreshSelect){
+                    $scope.filteredModel = $scope.backUp;
                 }                
 
                 $scope.filteredModel.reverse();  
@@ -1016,22 +1023,22 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             
             // this is for touch enabled devices. We don't want to hide checkboxes on scroll. 
             var onTouchStart = function( e ) { 
-            	$scope.$apply( function() {
-            		$scope.scrolled = false;
-            	}); 
+                $scope.$apply( function() {
+                    $scope.scrolled = false;
+                }); 
             };
             angular.element( document ).bind( 'touchstart', onTouchStart);
             var onTouchMove = function( e ) { 
-            	$scope.$apply( function() {
-            		$scope.scrolled = true;                
-            	});
+                $scope.$apply( function() {
+                    $scope.scrolled = true;                
+                });
             };
             angular.element( document ).bind( 'touchmove', onTouchMove);            
 
             // unbind document events to prevent memory leaks
             $scope.$on( '$destroy', function () {
-			    angular.element( document ).unbind( 'touchstart', onTouchStart);
-            	angular.element( document ).unbind( 'touchmove', onTouchMove);
+                angular.element( document ).unbind( 'touchstart', onTouchStart);
+                angular.element( document ).unbind( 'touchmove', onTouchMove);
             });
         }
     }
@@ -1115,5 +1122,5 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             '</div>'+
         '</div>'+
     '</span>';
-	$templateCache.put( 'isteven-multi-select.htm' , template );
+    $templateCache.put( 'isteven-multi-select.htm' , template );
 }]); 
