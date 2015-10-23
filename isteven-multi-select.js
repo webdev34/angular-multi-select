@@ -194,7 +194,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                     }
                 } 
 
-                if($scope.refreshSelect){
+                if($scope.refreshSelect && $scope.outputModel.length != 0){
                     $scope.filteredModel = $scope.backUp;
                 }                
 
