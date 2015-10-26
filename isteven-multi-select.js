@@ -971,10 +971,10 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 $scope.lang.reset           = $sce.trustAsHtml( $scope.icon.reset      + '&nbsp;&nbsp;Reset' );
                 $scope.lang.search          = 'Search...';
 
-                if(typeof $scope.selectLabel === 'undefined'){
+                if(typeof attrs.selectLabelTitle === 'undefined'){
                     $scope.lang.nothingSelected = 'Select';
                 }else{
-                    $scope.lang.nothingSelected = $scope.selectLabel;
+                    $scope.lang.nothingSelected = attrs.selectLabelTitle;
                 }
                                 
             }
